@@ -72,13 +72,13 @@ export default function Recorder({onRecordingStarted, onRecordingComplete, onRec
   const buildInterface = () => {
     if(isRecording == false) {
       return (
-        <div style={{padding: 10, width: 50, height: 50, borderRadius: 100, display: 'flex', alignItems: 'center', justifyContents: 'center', backgroundColor: 'blue'}}>
+        <div style={{padding: 10, width: 70, height: 70, borderRadius: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'blue'}}>
           <img style={{transform: 'rotate(180deg)'}} src={micIcon} width={24} height={24} />
         </div>
       );
     } else {
       return (
-        <div style={{padding: 10, width: 50, height: 50, borderRadius: 100, display: 'flex', alignItems: 'center', justifyContents: 'center', backgroundColor: 'blue'}}>
+        <div style={{padding: 10, width: 70, height: 70, borderRadius: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'red'}}>
           <img src={micIcon} width={24} height={24} />
         </div>
       );
