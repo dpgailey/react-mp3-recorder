@@ -26,16 +26,8 @@ export default function Recorder(onRecorderStarted, onRecordingComplete, onRecor
     }
   }
 
-  const updateRecording = () => {
-    if(isRecording == false) {
-      setIsRecording(true);
-      cleanup();
-
-      setRecorder(new vmsg.Recorder({
-        wasmURL,
-        shimURL,
-        ...recorderParams
-      }));
+  useEffect(() => {
+    if(recorder && recorder !== null) {
 
       recorder.init()
       .then(() => {
@@ -49,9 +41,23 @@ export default function Recorder(onRecorderStarted, onRecordingComplete, onRecor
         onRecordingError(err);
       });
 
+    }
+  }, [recorder])
+
+  const updateRecording = () => {
+    if(isRecording == false) {
+      setIsRecording(true);
+      cleanup();
+
+      setRecorder(new vmsg.Recorder({
+        wasmURL,
+        shimURL,
+        ...recorderParams
+      }));
+
     } else {
       setIsRecording(false);
-      this.recorder.stopRecording()
+      recorder.stopRecording()
       .then((blob) => onRecordingComplete(blob))
       .catch((err) => onRecordingError(err));
 
