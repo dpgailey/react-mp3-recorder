@@ -6,6 +6,8 @@ import React, { useState } from 'react'
 
 import vmsg from './vmsg'
 
+import micIcon from './mic-icon-white.svg'
+
 import wasmURL from './vmsg.wasm'
 
 const shimURL = 'https://unpkg.com/wasm-polyfill.js@0.2.0/wasm-polyfill.js'
