@@ -41,9 +41,6 @@ export default function Recorder({onRecordingStarted, onRecordingComplete, onRec
       .then(() => {
         recorder.startRecording();
         setIsRecording(true);
-        if(onRecorderStarted) {
-          onRecorderStarted();
-        }
       })
       .catch((err) => {
         onRecordingError(err);
