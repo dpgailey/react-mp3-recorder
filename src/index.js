@@ -12,7 +12,7 @@ import wasmURL from './vmsg.wasm'
 
 const shimURL = 'https://unpkg.com/wasm-polyfill.js@0.2.0/wasm-polyfill.js'
 
-export default function Recorder(onRecorderStarted, onRecordingComplete, onRecordingError, ...recorderParams) {
+export default function Recorder({onRecordingStarted, onRecordingComplete, onRecordingError}) { // ...recorderParams) {
 
   const [isRecording, setIsRecording] = useState(false);
   const [audio, setAudio] = useState(null);
@@ -25,6 +25,14 @@ export default function Recorder(onRecorderStarted, onRecordingComplete, onRecor
       setRecorder(null)
     }
   }
+
+  useEffect(() => {
+    if(isRecording === true) {
+      if (onRecordingStarted) {
+        onRecordingStarted();
+      }
+    }
+  }, [isRecording])
 
   useEffect(() => {
     if(recorder && recorder !== null) {
@@ -52,7 +60,7 @@ export default function Recorder(onRecorderStarted, onRecordingComplete, onRecor
       setRecorder(new vmsg.Recorder({
         wasmURL,
         shimURL,
-        ...recorderParams
+       //...recorderParams
       }));
 
     } else {
